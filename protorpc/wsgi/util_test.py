@@ -69,10 +69,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page()
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -81,10 +81,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page('my content')
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('my content', content)
-    self.assertEquals({'content-length': str(len('my content')),
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('my content', content)
+    self.assertEqual({'content-length': str(len('my content')),
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -93,10 +93,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page(content_type='text/plain')
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/plain',
                       },
                       headers)
@@ -105,10 +105,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page(status='400 Not Good Request')
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(400, status)
-    self.assertEquals('Not Good Request', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(400, status)
+    self.assertEqual('Not Good Request', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -117,10 +117,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page(status=401)
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(401, status)
-    self.assertEquals('Unauthorized', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(401, status)
+    self.assertEqual('Unauthorized', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -129,10 +129,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page(status=909)
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(909, status)
-    self.assertEquals('Unknown Error', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(909, status)
+    self.assertEqual('Unknown Error', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -141,10 +141,10 @@ class StaticPageBase(WsgiTestBase):
     default_page = wsgi_util.static_page(status=(500, 'Bad Thing'))
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(500, status)
-    self.assertEquals('Bad Thing', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(500, status)
+    self.assertEqual('Bad Thing', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -155,10 +155,10 @@ class StaticPageBase(WsgiTestBase):
                                                   ('z', 'bin')])
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                        'x': 'foo',
                        'a': 'bar',
@@ -167,13 +167,13 @@ class StaticPageBase(WsgiTestBase):
                       headers)
 
   def testHeadersUnicodeSafe(self):
-    default_page = wsgi_util.static_page(headers=[('x', u'foo')])
+    default_page = wsgi_util.static_page(headers=[('x', 'foo')])
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                        'x': 'foo',
                       },
@@ -186,10 +186,10 @@ class StaticPageBase(WsgiTestBase):
                                                   'z': 'bin'})
     self.ResetServer(default_page)
     status, reason, content, headers = self.DoHttpRequest()
-    self.assertEquals(200, status)
-    self.assertEquals('OK', reason)
-    self.assertEquals('', content)
-    self.assertEquals({'content-length': '0',
+    self.assertEqual(200, status)
+    self.assertEqual('OK', reason)
+    self.assertEqual('', content)
+    self.assertEqual({'content-length': '0',
                        'content-type': 'text/html; charset=utf-8',
                        'x': 'foo',
                        'a': 'bar',
@@ -203,11 +203,11 @@ class FirstFoundTest(WsgiTestBase):
   def testEmptyConfiguration(self):
     self.ResetServer(wsgi_util.first_found([]))
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.NOT_FOUND, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.NOT_FOUND], status_text)
-    self.assertEquals(util.pad_string(six.moves.http_client.responses[six.moves.http_client.NOT_FOUND]),
+    self.assertEqual(six.moves.http_client.NOT_FOUND, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.NOT_FOUND], status_text)
+    self.assertEqual(util.pad_string(six.moves.http_client.responses[six.moves.http_client.NOT_FOUND]),
                       content)
-    self.assertEquals({'content-length': '512',
+    self.assertEqual({'content-length': '512',
                        'content-type': 'text/plain; charset=utf-8',
                       },
                       headers)
@@ -216,10 +216,10 @@ class FirstFoundTest(WsgiTestBase):
     self.ResetServer(wsgi_util.first_found([APP1]))
 
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.OK, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
-    self.assertEquals('App1', content)
-    self.assertEquals({'content-length': '4',
+    self.assertEqual(six.moves.http_client.OK, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
+    self.assertEqual('App1', content)
+    self.assertEqual({'content-length': '4',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -228,20 +228,20 @@ class FirstFoundTest(WsgiTestBase):
     self.ResetServer(wsgi_util.first_found(iter([APP1])))
 
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.OK, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
-    self.assertEquals('App1', content)
-    self.assertEquals({'content-length': '4',
+    self.assertEqual(six.moves.http_client.OK, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
+    self.assertEqual('App1', content)
+    self.assertEqual({'content-length': '4',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
 
     # Do request again to make sure iterator was properly copied.
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.OK, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
-    self.assertEquals('App1', content)
-    self.assertEquals({'content-length': '4',
+    self.assertEqual(six.moves.http_client.OK, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
+    self.assertEqual('App1', content)
+    self.assertEqual({'content-length': '4',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -250,10 +250,10 @@ class FirstFoundTest(WsgiTestBase):
     self.ResetServer(wsgi_util.first_found([APP1, APP2]))
 
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.OK, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
-    self.assertEquals('App1', content)
-    self.assertEquals({'content-length': '4',
+    self.assertEqual(six.moves.http_client.OK, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
+    self.assertEqual('App1', content)
+    self.assertEqual({'content-length': '4',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -262,10 +262,10 @@ class FirstFoundTest(WsgiTestBase):
     self.ResetServer(wsgi_util.first_found([NOT_FOUND, APP2]))
 
     status, status_text, content, headers = self.DoHttpRequest('/')
-    self.assertEquals(six.moves.http_client.OK, status)
-    self.assertEquals(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
-    self.assertEquals('App2', content)
-    self.assertEquals({'content-length': '4',
+    self.assertEqual(six.moves.http_client.OK, status)
+    self.assertEqual(six.moves.http_client.responses[six.moves.http_client.OK], status_text)
+    self.assertEqual('App2', content)
+    self.assertEqual({'content-length': '4',
                        'content-type': 'text/html; charset=utf-8',
                       },
                       headers)
@@ -287,8 +287,8 @@ class FirstFoundTest(WsgiTestBase):
       statuses_to_check.remove(dont_check)
     for current_status in statuses_to_check:
       status, status_text, content, headers = self.DoHttpRequest('/')
-      self.assertEquals(current_status, status)
-      self.assertEquals('Whatever', status_text)
+      self.assertEqual(current_status, status)
+      self.assertEqual('Whatever', status_text)
 
 
 if __name__ == '__main__':

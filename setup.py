@@ -18,7 +18,7 @@
 
 import platform
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 # Configure the required packages and scripts to install, depending on
 # Python version and OS.
@@ -29,24 +29,17 @@ CONSOLE_SCRIPTS = [
     'gen_protorpc = gen_protorpc:main',
 ]
 
-py_version = platform.python_version()
-if py_version < '2.6':
-    REQUIRED_PACKAGES.append('simplejson')
-
-_PROTORPC_VERSION = '0.12.0'
-packages = [
-    'protorpc',
-]
+_PROTORPC_VERSION = '0.12.0a1'
 
 setup(
-    name='protorpc',
+    name='protorpc-standalone',
     version=_PROTORPC_VERSION,
     description='Google Protocol RPC',
     url='http://code.google.com/p/google-protorpc/',
     author='Google Inc.',
     author_email='rafek@google.com',
     # Contained modules and scripts.
-    packages=packages,
+    packages=find_packages(),
     entry_points={
         'console_scripts': CONSOLE_SCRIPTS,
     },
@@ -58,12 +51,8 @@ setup(
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX :: Linux',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],

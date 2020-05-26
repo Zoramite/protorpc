@@ -76,9 +76,11 @@ def static_page(content='',
 
   # Ensure all headers are str.
   for index, (key, value) in enumerate(headers):
-    if isinstance(value, six.text_type):
-      value = value.encode('utf-8')
+    try:
+      value = value.decode('utf-8')
       headers[index] = key, value
+    except:
+      pass
 
     if not isinstance(key, str):
       raise TypeError('Header key must be str, found: %r' % (key,))

@@ -191,10 +191,10 @@ class ProtoServiceMappingsTest(ServiceMappingTest):
       transport.HttpTransport(my_other_service_url))
 
     response = my_service.init_parameter()
-    self.assertEquals('service', response.string_value)
+    self.assertEqual('service', response.string_value)
 
     response = my_other_service.init_parameter()
-    self.assertEquals('other-service', response.string_value)
+    self.assertEqual('other-service', response.string_value)
 
 
 def main():
