@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+"twine" = "*"
+"urllib3[secure]" = "*"
+
+[packages]
+# minimum version to avoid six.NewBase issues
+six = ">=1.7.0"
+
+[requires]
+python_version = "3"
