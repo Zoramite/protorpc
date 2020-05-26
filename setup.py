@@ -30,6 +30,9 @@ CONSOLE_SCRIPTS = [
 ]
 
 _PROTORPC_VERSION = '0.12.0a1'
+packages = [
+    'protorpc._google',
+]
 
 setup(
     name='protorpc-standalone',
@@ -39,7 +42,7 @@ setup(
     author='Google Inc.',
     author_email='rafek@google.com',
     # Contained modules and scripts.
-    packages=find_packages(),
+    packages=find_packages() + packages,
     entry_points={
         'console_scripts': CONSOLE_SCRIPTS,
     },
