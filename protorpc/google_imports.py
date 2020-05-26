@@ -9,4 +9,4 @@ __author__ = 'yey@google.com (Ye Yuan)'
 # pylint: disable=g-import-not-at-top
 # pylint: disable=unused-import
 
-from _google.net.proto import ProtocolBuffer
+from ._google.net.proto import ProtocolBuffer

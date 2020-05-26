@@ -29,7 +29,7 @@ CONSOLE_SCRIPTS = [
     'gen_protorpc = gen_protorpc:main',
 ]
 
-_PROTORPC_VERSION = '0.12.0a1'
+_PROTORPC_VERSION = '0.12.0a2'
 packages = [
     'protorpc._google',
 ]
