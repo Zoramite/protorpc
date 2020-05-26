@@ -97,7 +97,7 @@ Each stub instance has an async object that can be used for initiating
 asynchronous RPCs if the underlying protocol transport supports it.  To
 make an asynchronous call, do:
 
-  rpc = my_service.async.do_something(request)
+  rpc = my_service.proto_async.do_something(request)
   response = rpc.get_response()
 """
 
@@ -578,7 +578,7 @@ class _ServiceClass(type):
       Returns:
         Response message from synchronized RPC.
       """
-      return async_method(self.async, *args, **kwargs).response
+      return async_method(self.proto_async, *args, **kwargs).response
     sync_method.__name__ = async_method.__name__
     sync_method.remote = async_method.remote
     return sync_method
@@ -685,7 +685,7 @@ class _ServiceClass(type):
           transport: Underlying transport to communicate with remote service.
         """
         super(cls.Stub, self).__init__(transport)
-        self.async = cls.AsyncStub(transport)
+        self.proto_async = cls.AsyncStub(transport)
 
       # Build synchronous stub class.
       stub_attributes = {'Service': cls,

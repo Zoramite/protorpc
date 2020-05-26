@@ -638,7 +638,7 @@ class StubTest(test_util.TestCase):
 
     self.mox.ReplayAll()
 
-    self.assertEquals(rpc, stub.async.remote_method(request))
+    self.assertEquals(rpc, stub.proto_async.remote_method(request))
 
     self.mox.VerifyAll()
 
@@ -657,7 +657,7 @@ class StubTest(test_util.TestCase):
 
     self.mox.ReplayAll()
 
-    self.assertEquals(rpc, stub.async.remote_method(param1='val1',
+    self.assertEquals(rpc, stub.proto_async.remote_method(param1='val1',
                                                     param2='val2'))
 
     self.mox.VerifyAll()
@@ -675,7 +675,7 @@ class StubTest(test_util.TestCase):
     self.assertRaisesWithRegexpMatch(
       TypeError,
       r'May not provide both args and kwargs',
-      stub.async.remote_method,
+      stub.proto_async.remote_method,
       request,
       param1='val1',
       param2='val2')
@@ -695,7 +695,7 @@ class StubTest(test_util.TestCase):
     self.assertRaisesWithRegexpMatch(
       TypeError,
       r'remote_method\(\) takes at most 2 positional arguments \(3 given\)',
-      stub.async.remote_method,
+      stub.proto_async.remote_method,
       request, 'another value')
 
     self.mox.VerifyAll()
